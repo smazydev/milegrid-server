@@ -34,9 +34,14 @@ io.on("connection", (socket) => {
   });
 
 /*   socket.on("update-cell-data", (data) => {
-      console.log(data);
-      socket.broadcast.emit("update-cell", data);
+    console.log(data);
+    socket.broadcast.emit("update-cell-data", data);
   }); */
+
+  socket.on("cell-styles", (data) => {
+    console.log(data);
+    socket.broadcast.emit("cell-styles", data);
+  });
 
   socket.on("disconnect", () => {
     console.log("user disconnected");
