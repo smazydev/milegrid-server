@@ -18,30 +18,32 @@ const io = require("socket.io")(server, {
 
 io.on("connection", (socket) => {
   console.log("a user connected:", socket.id);
-  socket.on("singular-cell-selection", (data) => {
-    console.log(data);
-    socket.broadcast.emit("singular-cell-selection", data);
+
+  socket.on("cell-selected", (data) => {
+    // console.log(data);
+    socket.broadcast.emit("cell-selected", data);
   });
 
-  socket.on("multiple-cell-selection", (data) => {
-    console.log(data);
-    socket.broadcast.emit("multiple-cell-selection", data);
+  socket.on("cells-selected", (data) => {
+    // console.log(data);
+    socket.broadcast.emit("cells-selected", data);
   });
 
   socket.on("cell-edited", (data) => {
-    console.log(data);
+    // console.log(data);
+
     socket.broadcast.emit("cell-edited", data);
   });
 
-/*   socket.on("update-cell-data", (data) => {
+  /*   socket.on("update-cell-data", (data) => {
     console.log(data);
     socket.broadcast.emit("update-cell-data", data);
   }); */
 
-  socket.on("cell-styles", (data) => {
+  /*   socket.on("cell-styles", (data) => {
     console.log(data);
     socket.broadcast.emit("cell-styles", data);
-  });
+  }); */
 
   socket.on("disconnect", () => {
     console.log("user disconnected");
