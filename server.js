@@ -31,8 +31,15 @@ io.on("connection", (socket) => {
 
   socket.on("cell-edited", (data) => {
     // console.log(data);
-
     socket.broadcast.emit("cell-edited", data);
+  });
+
+  socket.on("cell-style", (data) => {
+    socket.broadcast.emit("cell-style", data);
+  });
+
+  socket.on("add-sheet", (data) => {
+    socket.broadcast.emit("add-sheet", data);
   });
 
   /*   socket.on("update-cell-data", (data) => {
