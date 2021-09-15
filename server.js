@@ -16,6 +16,13 @@ const io = require("socket.io")(server, {
   },
 });
 
+app.use(express.static(path.join(__dirname, "./", "build")));
+app.get("*", function (req, res) {
+  res.sendFile("index.html", {
+    root: path.join(__dirname, "./build"),
+  });
+});
+
 io.on("connection", (socket) => {
   console.log("a user connected:", socket.id);
 
