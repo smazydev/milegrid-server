@@ -16,13 +16,6 @@ const io = require("socket.io")(server, {
   },
 });
 
-app.use(express.static(path.join(__dirname, "./", "build")));
-app.get("*", function (req, res) {
-  res.sendFile("index.html", {
-    root: path.join(__dirname, "./build"),
-  });
-});
-
 io.on("connection", (socket) => {
   console.log("a user connected:", socket.id);
 
@@ -47,6 +40,10 @@ io.on("connection", (socket) => {
 
   socket.on("add-sheet", (data) => {
     socket.broadcast.emit("add-sheet", data);
+  });
+
+  socket.on("change", (data) => {
+    socket.broadcast.emit("change", data);
   });
 
   /*   socket.on("update-cell-data", (data) => {
